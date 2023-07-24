@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: wad23-poi-map-app-dev
+  annotations:
+    argocd/app-name: wad23-poi-map-app-dev
+    backstage.io/kubernetes-id: wad23-poi-map-app
+    backstage.io/kubernetes-namespace: wad23
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: devhub-test/wad23-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.redhatdevhub.l07n.p1.openshiftapps.com/dev-pipelines/ns/wad23/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.redhatdevhub.l07n.p1.openshiftapps.com/k8s/ns/wad23/deployments/wad23-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.redhatdevhub.l07n.p1.openshiftapps.com/#https://github.com/devhub-test/wad23-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://wad23-poi-map-app-wad23.apps.redhatdevhub.l07n.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/hpgrahsl"
+  system: workshop-system-wad23
+  consumesApis:
+    - gateway-api-wad23
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-wad23
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/hpgrahsl"
